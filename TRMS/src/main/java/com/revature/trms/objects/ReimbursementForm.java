@@ -19,6 +19,7 @@ public class ReimbursementForm {
 	private String finalGrade;
 	private String finalPresentation;
 	private String status;
+	private String title;
 
 	public int getFID() {
 		return FID;
@@ -154,6 +155,14 @@ public class ReimbursementForm {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	@Override
