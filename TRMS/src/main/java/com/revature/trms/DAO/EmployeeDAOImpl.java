@@ -22,16 +22,17 @@ public class EmployeeDAOImpl extends DAOFactory implements EmployeeDAO {
 	}
 
 	@Override
-	public int insertEmployee(int P_ID, String firstName, String lastName, String street, String city, String state,
-								String zip, String phone, String email, String password) throws SQLException {
+	public int insertEmployee(int PID, String firstName, String lastName, String street, String city, String state,
+								String zip, String phone, String email, int titleID, int departmentID, 
+								float availableReimbursement, String password) throws SQLException {
 		String sql = "INSERT INTO EMPLOYEE "
-					+ "(P_ID, FIRSTNAME, LASTNAME, STREET, CITY, STATE, ZIP_CODE, PHONE_NUMBER, EMAIL, PASSWORD) "
+					+ "(P_ID, FIRSTNAME, LASTNAME, STREET, CITY, STATE, ZIP_CODE, PHONE_NUMBER, EMAIL, TITLE_ID, DEPARTMENT_ID, AVAILABLE_REIMBURSEMENT, PASSWORD) "
 					+ "VALUES "
-					+ "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+					+ "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		PreparedStatement pStmt = conn.prepareStatement(sql);
 
-		pStmt.setInt(1, P_ID);
+		pStmt.setInt(1, PID);
 		pStmt.setString(2, firstName);
 		pStmt.setString(3, lastName);
 		pStmt.setString(4, street);
@@ -40,7 +41,10 @@ public class EmployeeDAOImpl extends DAOFactory implements EmployeeDAO {
 		pStmt.setString(7, zip);
 		pStmt.setString(8, phone);
 		pStmt.setString(9, email);
-		pStmt.setString(10, password);
+		pStmt.setInt(10, titleID);
+		pStmt.setInt(11, departmentID);
+		pStmt.setFloat(12, availableReimbursement);
+		pStmt.setString(13, password);
 		
 		return pStmt.executeUpdate();
 	}
@@ -56,18 +60,33 @@ public class EmployeeDAOImpl extends DAOFactory implements EmployeeDAO {
 	}
 
 	@Override
-	public Employee getEmployee(int P_ID) throws SQLException {
-		String sql = "SELECT P_ID, FIRSTNAME, LASTNAME, STREET, CITY, STATE, ZIP_CODE, PHONE_NUMBER, EMAIL, PASSWORD "
+	public Employee getEmployee(int PID) throws SQLException {
+		Employee employee = new Employee();
+		String sql = "SELECT P_ID, FIRSTNAME, LASTNAME, STREET, CITY, STATE, ZIP_CODE, PHONE_NUMBER, EMAIL, TITLE_ID, DEPARTMENT_ID, AVAILABLE_REIMBURSEMENT, PASSWORD "
 					+ "FROM EMPLOYEE "
 					+ "WHERE P_ID=?";
 		
 		PreparedStatement pStmt = conn.prepareStatement(sql);
-		pStmt.setInt(1, P_ID);
+		pStmt.setInt(1, PID);
 		
 		ResultSet rs = pStmt.executeQuery();
 		rs.next();
+		
+		employee.setPID(rs.getInt(1));
+		employee.setFirstName(rs.getString(2));
+		employee.setLastName(rs.getString(3));
+		employee.setStreet(rs.getString(4));
+		employee.setCity(rs.getString(5));
+		employee.setState(rs.getString(6));
+		employee.setZipCode(rs.getString(7));
+		employee.setPhoneNumber(rs.getString(8));
+		employee.setEmail(rs.getString(9));
+		employee.setTitleID(rs.getInt(10));
+		employee.setDepartmentID(rs.getInt(11));
+		employee.setAvailableReimbursement(rs.getFloat(12));
+		employee.setPassword(rs.getString(13));
 
-		return null;
+		return employee;
 	}
 
 	@Override

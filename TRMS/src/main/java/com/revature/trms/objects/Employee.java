@@ -2,7 +2,7 @@ package com.revature.trms.objects;
 
 public class Employee {
 
-	private int P_ID;
+	private int PID;
 	private String firstName;
 	private String lastName;
 	private String street;
@@ -17,12 +17,12 @@ public class Employee {
 	private String password;
 	
 
-	public int getP_ID() {
-		return P_ID;
+	public int getPID() {
+		return PID;
 	}
 
-	public void setP_ID(int p_ID) {
-		P_ID = p_ID;
+	public void setPID(int pID) {
+		PID = pID;
 
 	}
 	public String getFirstName() {
@@ -123,7 +123,7 @@ public class Employee {
 
 	@Override
 	public String toString() {
-		return "Employee [PID=" + PID + ", firstName=" + firstName + ", lastName=" + lastName + ", street=" + street
+		return "Employee [P_ID=" + PID + ", firstName=" + firstName + ", lastName=" + lastName + ", street=" + street
 				+ ", city=" + city + ", state=" + state + ", zipCode=" + zipCode + ", phoneNumber=" + phoneNumber
 				+ ", email=" + email + ", titleID=" + titleID + ", departmentID=" + departmentID
 				+ ", availableReimbursement=" + availableReimbursement + ", password=" + password + "]";
