@@ -37,7 +37,7 @@ public abstract class DAOFactory {
 		connection.close();
 	}
 	
-	public static DAOFactory getDAO(String daoType){
+	public static DAOFactory getDAO(String daoType) throws SQLException {
 		switch(daoType){
 		
 		case "EmployeeDAO":

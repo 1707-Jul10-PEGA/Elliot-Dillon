@@ -21,7 +21,7 @@ public class Employee {
 		return PID;
 	}
 
-	public void setP_ID(int pID) {
+	public void setPID(int pID) {
 		PID = pID;
 
 	}
@@ -123,7 +123,7 @@ public class Employee {
 
 	@Override
 	public String toString() {
-		return "Employee [PID=" + PID + ", firstName=" + firstName + ", lastName=" + lastName + ", street=" + street
+		return "Employee [P_ID=" + PID + ", firstName=" + firstName + ", lastName=" + lastName + ", street=" + street
 				+ ", city=" + city + ", state=" + state + ", zipCode=" + zipCode + ", phoneNumber=" + phoneNumber
 				+ ", email=" + email + ", titleID=" + titleID + ", departmentID=" + departmentID
 				+ ", availableReimbursement=" + availableReimbursement + ", password=" + password + "]";
