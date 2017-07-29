@@ -8,16 +8,13 @@ public interface EmployeeDAO {
 
 	public int insertEmployee(int P_ID, String firstName, String lastName, String street, String city, String state, 
 							String zip, String phone, String email, String password) throws SQLException;
-
-	// insert a form with the given information into the database
-	public int insertForm(int P_ID, String event, String format, String description, String justification, 
-							int hoursOff, String finalGrade, String status, String title) throws SQLException;
 	
-	public boolean deleteEmployee();
+	public boolean deleteEmployee() throws SQLException;
 
-	public boolean updateEmployee();
+	public boolean updateEmployee() throws SQLException;
 	
-	public Employee getEmployee(String email,String password) throws SQLException;
+	// save information from an employee to an employee object
+	public Employee getEmployee(int P_ID) throws SQLException;
 	
 	public Employee getEmployeeSupervisor(int e_id,String department) throws SQLException;
 	

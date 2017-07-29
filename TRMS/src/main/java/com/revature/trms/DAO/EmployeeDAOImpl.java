@@ -2,6 +2,7 @@ package com.revature.trms.DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.revature.trms.objects.Employee;
@@ -10,7 +11,7 @@ public class EmployeeDAOImpl extends DAOFactory implements EmployeeDAO {
 
 	Connection conn = null;
 	
-	// set up a connection
+	// setup a connection
 	public void setup() throws SQLException {
 		conn = DAOFactory.getConnection();
 	}
@@ -43,17 +44,6 @@ public class EmployeeDAOImpl extends DAOFactory implements EmployeeDAO {
 		
 		return pStmt.executeUpdate();
 	}
-
-	/* TODO: Locataion for reimbusement form is the location of the event, NOT the employee */
-	@Override
-	public int insertForm(int P_ID, String event, String format, String description, String justification, int hoursOff, 
-							String finalGrade, String status, String title) throws SQLException {
-		String sql = "INSERT INTO REIMBURSEMENT_FORMS "
-				+ "(P_ID, )"
-				+ "VALUES"
-				+ "()";
-		return 0;	
-	}
 	
 	@Override
 	public boolean deleteEmployee() {
@@ -66,8 +56,17 @@ public class EmployeeDAOImpl extends DAOFactory implements EmployeeDAO {
 	}
 
 	@Override
-	public Employee getEmployee(String email, String password) {
-		// TODO Auto-generated method stub
+	public Employee getEmployee(int P_ID) throws SQLException {
+		String sql = "SELECT P_ID, FIRSTNAME, LASTNAME, STREET, CITY, STATE, ZIP_CODE, PHONE_NUMBER, EMAIL, PASSWORD "
+					+ "FROM EMPLOYEE "
+					+ "WHERE P_ID=?";
+		
+		PreparedStatement pStmt = conn.prepareStatement(sql);
+		pStmt.setInt(1, P_ID);
+		
+		ResultSet rs = pStmt.executeQuery();
+		rs.next();
+
 		return null;
 	}
 
