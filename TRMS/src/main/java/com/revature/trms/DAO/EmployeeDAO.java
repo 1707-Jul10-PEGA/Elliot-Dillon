@@ -23,6 +23,8 @@ public interface EmployeeDAO {
 	// TODO: Could return a result set of given information instead of object
 	public Employee getEmployee(int PID) throws SQLException;
 	
+	public Employee getEmployee(String username, String password) throws SQLException;
+	
 	public Employee getEmployeeSupervisor(int e_id, String department) throws SQLException;
 	
 	public Employee getDirectManager(String department) throws SQLException;
