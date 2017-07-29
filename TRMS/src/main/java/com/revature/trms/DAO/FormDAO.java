@@ -12,7 +12,7 @@ public interface FormDAO {
 							float amount, String event, String format, String description, String justification, 
 							int hoursOff, String finalGrade, String presentation, String status, String title) throws SQLException;
 	
-	public boolean submitRiembursementForm(ReimbursementForm form);
+	public boolean submitReimbursementForm(ReimbursementForm form);
 	
 	public ReimbursementForm getEmployeeSubmitedForms(int e_id);
 	

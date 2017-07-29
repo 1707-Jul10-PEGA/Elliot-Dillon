@@ -7,6 +7,10 @@ import com.revature.trms.objects.Employee;
 public interface EmployeeDAO {
 
 	// insert an employee with the given information into the database
+	// TODO: Logic with title Id, department ID
+	// title id: supervisor, head, benco, direct manager (edge case: head/supervisor)
+	// dept id: geology, etc
+	// start indicies at 1
 	public int insertEmployee(int P_ID, String firstName, String lastName, String street, String city, String state, 
 							String zip, String phone, String email, String password) throws SQLException;
 	

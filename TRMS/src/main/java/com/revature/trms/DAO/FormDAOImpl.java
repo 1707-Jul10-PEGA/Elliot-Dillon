@@ -54,7 +54,7 @@ public class FormDAOImpl extends DAOFactory implements FormDAO {
 	}
 
 	@Override
-	public boolean submitRiembursementForm(ReimbursementForm form) {
+	public boolean submitReimbursementForm(ReimbursementForm form) {
 		// TODO Auto-generated method stub
 		return false;
 	}
