@@ -1,6 +1,5 @@
 var last_doc=1;
 
-
 $(document).ready(function() {
 
 	console.log("document loaded");
@@ -30,3 +29,4 @@ $(document).ready(function() {
 	});
 	
 });
+
