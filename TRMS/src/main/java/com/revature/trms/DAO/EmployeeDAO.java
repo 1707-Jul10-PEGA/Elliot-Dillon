@@ -6,6 +6,7 @@ import com.revature.trms.objects.Employee;
 
 public interface EmployeeDAO {
 
+	// insert an employee with the given information into the database
 	public int insertEmployee(int P_ID, String firstName, String lastName, String street, String city, String state, 
 							String zip, String phone, String email, String password) throws SQLException;
 	
@@ -14,6 +15,7 @@ public interface EmployeeDAO {
 	public boolean updateEmployee() throws SQLException;
 	
 	// save information from an employee to an employee object
+	// TODO: Could return a result set of given information instead of object
 	public Employee getEmployee(int P_ID) throws SQLException;
 	
 	public Employee getEmployeeSupervisor(int e_id,String department) throws SQLException;
