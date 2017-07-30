@@ -2,11 +2,10 @@
 	border:5px solid red;	
 }
 
-<<<<<<< HEAD
-
-
-=======
 #progress_bar{
 	padding:5px;
 }
->>>>>>> progressBar
+
+#comment_box{
+	padding:5px;
+}
