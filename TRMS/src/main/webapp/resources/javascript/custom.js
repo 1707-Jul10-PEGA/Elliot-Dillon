@@ -49,4 +49,26 @@ $(document).ready(function() {
 		$('tbody').append(row);
 	}
 	
+	// paste the comment on the reimbursement form
+	$("#add_comment").click(function(e) {
+		e.preventDefault();
+		
+		var row = $('<li class="list-group-item extra_doc"');
+		var label = $('<label for="comment">[Title, name]</label>');
+		var textBox = $('<textarea class="form-control" rows="3" id="comment"></textarea>');
+		
+		row.append(label);
+		row.append(textBox);
+		$("#additional_comment").after(row);
+	});
+	
+	// append comment boxes
+	function appendComments() {
+		var row = $('<tr></tr>');
+	}
+	
+	// test function for appending comments
+	$("")
+	
+	
 });
