@@ -28,7 +28,6 @@ $(document).ready(function() {
 		$(".extra_doc").last().remove();
 	});
 	
-<<<<<<< HEAD
 	$("#test").click(function(e){
 		e.preventDefault();
 		console.log("in click");
@@ -50,8 +49,33 @@ $(document).ready(function() {
 		$('tbody').append(row);
 	}
 	
+	// paste the comment on the reimbursement form
+	$("#add_comment").click(function(e) {
+		e.preventDefault();
+		var date = new Date();
+		var month = date.getMonth()+1;
+		var day = date.getUTCDate();
+		var year = date.getFullYear();
+		var hour = date.getHours();
+		var min = date.getMinutes();
+		
+		var row = $('<li class="list-group-item"></li>');
+		var label = $('<label for="comment">[Title, name]: </label>');
+		var comment = $("#comment").val();
+		
+		row.append(label);
+		row.append($('<br>'));
+		row.append($('<br>'));
+		row.append($('<br>'));
+		row.append($('<br>'));
+		row.append(comment);
+		row.append($('<br>'));
+		row.append($('<br>'));
+		row.append(month + "/" + day + "/" + year + " " + hour + ":" + min);
+		$("#additional_comment").after(row);
+		
+		// clear the text area
+		$("#comment").val('');
+	});
+	
 });
-=======
-});
-
->>>>>>> progressBar
