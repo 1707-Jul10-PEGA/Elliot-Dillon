@@ -2,9 +2,15 @@
 	border:5px solid red;	
 }
 
+#progress_header{
+	color: #ffffff;
+	text-align: center;
+}
+
 #progress_bar{
 	background-color: #0073e6;
 	padding:5px;
+	margin-top: 30px;
 }
 
 #comment_box{

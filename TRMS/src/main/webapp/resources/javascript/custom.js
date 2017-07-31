@@ -73,6 +73,9 @@ $(document).ready(function() {
 		row.append($('<br>'));
 		row.append(month + "/" + day + "/" + year + " " + hour + ":" + min);
 		$("#additional_comment").after(row);
+		
+		// clear the text area
+		$("#comment").val('');
 	});
 	
 });
