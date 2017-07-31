@@ -15,11 +15,12 @@ public class EmployeeDAOImpl extends DAOFactory implements EmployeeDAO {
 
 	private Connection conn = null;
 	private PreparedStatement pStmt;
+	private ConnectionFactory connectionFactory;
 	// setup a connection
 	
 	public void setup() throws SQLException {
-		
-		conn = ConnectionFactory.getInstance().getConnection();
+		connectionFactory = ConnectionFactory.getInstance();
+		conn = connectionFactory.getConnection();
 	}
 	
 	public void closeResources() throws SQLException{

@@ -33,7 +33,7 @@ public class loginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("index.html").forward(request, response);
+		request.getRequestDispatcher("login.html").forward(request, response);
 	}
 
 	/**
@@ -47,9 +47,10 @@ public class loginServlet extends HttpServlet {
 			Employee e = dao.getEmployee(username, password);
 			
 			if(e != null){
-				request.getRequestDispatcher("TRMSHomePage.html").forward(request, response);
+				response.sendRedirect(request.getContextPath()+"/home");
 			}else{
-				request.getRequestDispatcher("index.html").forward(request, response);
+				request.getSession().setAttribute("message", "Username and password are not recognized!");
+				response.sendRedirect(request.getContextPath()+"/index");
 			}
 			
 		} catch (SQLException e) {
