@@ -11,8 +11,8 @@ public class Employee {
 	private String zipCode;
 	private String phoneNumber;
 	private String email;
-	private int titleID;
-	private int departmentID;
+	private String title;
+	private String department;
 	private float availableReimbursement;
 	private String password;
 	
@@ -89,20 +89,20 @@ public class Employee {
 		this.email = email;
 	}
 
-	public int getTitleID() {
-		return titleID;
+	public String getTitle() {
+		return title;
 	}
 
-	public void setTitleID(int titleID) {
-		this.titleID = titleID;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
-	public int getDepartmentID() {
-		return departmentID;
+	public String getDepartmentID() {
+		return department;
 	}
 
-	public void setDepartmentID(int departmentID) {
-		this.departmentID = departmentID;
+	public void setDepartment(String department) {
+		this.department = department;
 	}
 
 	public float getAvailableReimbursement() {
@@ -125,7 +125,7 @@ public class Employee {
 	public String toString() {
 		return "Employee [P_ID=" + PID + ", firstName=" + firstName + ", lastName=" + lastName + ", street=" + street
 				+ ", city=" + city + ", state=" + state + ", zipCode=" + zipCode + ", phoneNumber=" + phoneNumber
-				+ ", email=" + email + ", titleID=" + titleID + ", departmentID=" + departmentID
+				+ ", email=" + email + ", titleID=" + title + ", departmentID=" + department
 				+ ", availableReimbursement=" + availableReimbursement + ", password=" + password + "]";
 	}
 

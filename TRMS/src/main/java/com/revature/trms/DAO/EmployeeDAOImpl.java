@@ -4,7 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
+import com.revature.trms.connectionfactory.ConnectionFactory;
 import com.revature.trms.objects.Employee;
 
 public class EmployeeDAOImpl extends DAOFactory implements EmployeeDAO {
@@ -12,24 +16,23 @@ public class EmployeeDAOImpl extends DAOFactory implements EmployeeDAO {
 	private Connection conn = null;
 	private PreparedStatement pStmt;
 	// setup a connection
+	
 	public void setup() throws SQLException {
-		conn = DAOFactory.getConnection();
+		
+		conn = ConnectionFactory.getInstance().getConnection();
 	}
 	
 	public void closeResources() throws SQLException{
 		conn.close();
 		pStmt.close();
 	}
-	
-	// no-args constructor
-	public EmployeeDAOImpl() throws SQLException {
-		setup();
-	}
+
 
 	@Override
 	public int insertEmployee(int PID, String firstName, String lastName, String street, String city, String state,
 								String zip, String phone, String email, int titleID, int departmentID, 
 								float availableReimbursement, String password) throws SQLException {
+		setup();
 		String sql = "INSERT INTO EMPLOYEE "
 					+ "(P_ID, FIRSTNAME, LASTNAME, STREET, CITY, STATE, ZIP_CODE, PHONE_NUMBER, EMAIL, TITLE_ID, DEPARTMENT_ID, AVAILABLE_REIMBURSEMENT, PASSWORD) "
 					+ "VALUES "
@@ -67,86 +70,161 @@ public class EmployeeDAOImpl extends DAOFactory implements EmployeeDAO {
 
 	@Override
 	public Employee getEmployee(int PID) throws SQLException {
-		Employee employee = new Employee();
-		String sql = "SELECT P_ID, FIRSTNAME, LASTNAME, STREET, CITY, STATE, ZIP_CODE, PHONE_NUMBER, EMAIL, TITLE_ID, DEPARTMENT_ID, AVAILABLE_REIMBURSEMENT, PASSWORD "
-					+ "FROM EMPLOYEE "
-					+ "WHERE P_ID=?";
-		setup();//establish connection
+		Employee e = null;
+		setup();
+		String sql = "SELECT EMP.P_ID, EMP.FIRSTNAME, EMP.LASTNAME, EMP.EMAIL, T.TITLE, DPT.DEPARTMENT "
+					+ "FROM EMPLOYEE EMP "
+					+ "INNER JOIN TITLE T ON T.T_ID = EMP.TITLE_ID "
+					+ "INNER JOIN DEPARTMENT DPT ON DPT.D_ID = EMP.DEPARTMENT_ID "
+					+ "WHERE EMP.P_ID = ?;";
 		pStmt = conn.prepareStatement(sql);
 		pStmt.setInt(1, PID);
-		
 		ResultSet rs = pStmt.executeQuery();
-		rs.next();
 		
-		employee.setPID(rs.getInt(1));
-		employee.setFirstName(rs.getString(2));
-		employee.setLastName(rs.getString(3));
-		employee.setStreet(rs.getString(4));
-		employee.setCity(rs.getString(5));
-		employee.setState(rs.getString(6));
-		employee.setZipCode(rs.getString(7));
-		employee.setPhoneNumber(rs.getString(8));
-		employee.setEmail(rs.getString(9));
-		employee.setTitleID(rs.getInt(10));
-		employee.setDepartmentID(rs.getInt(11));
-		employee.setAvailableReimbursement(rs.getFloat(12));
-		employee.setPassword(rs.getString(13));
-		closeResources();
-		return employee;
+		while(rs.next()){
+			e = new Employee();
+			e.setPID(rs.getInt("P_ID"));
+			e.setFirstName(rs.getString("FIRSTNAME"));
+			e.setLastName(rs.getString("LASTNAME"));
+			e.setDepartment(rs.getString("DEPARTMENT"));
+			e.setTitle("TITLE");
+		}
+		
+		return e;
 	}
 	
 	public Employee getEmployee(String username, String password)throws SQLException{
-		Employee employee = new Employee();
-		String sql = "SELECT P_ID, FIRSTNAME, LASTNAME, STREET, CITY, STATE, ZIP_CODE, PHONE_NUMBER, EMAIL, TITLE_ID, DEPARTMENT_ID, AVAILABLE_REIMBURSEMENT, PASSWORD "
-					+ "FROM EMPLOYEE "
-					+ "WHERE EMAIL=? AND PASSWORD = ?";
-		setup();//establish connection
+		Employee e = null;
+		setup();
+		String sql = "SELECT EMP.P_ID, EMP.FIRSTNAME, EMP.LASTNAME, EMP.EMAIL, T.TITLE, DPT.DEPARTMENT "
+					+ "FROM EMPLOYEE EMP "
+					+ "INNER JOIN TITLE T ON T.T_ID = EMP.TITLE_ID "
+					+ "INNER JOIN DEPARTMENT DPT ON DPT.D_ID = EMP.DEPARTMENT_ID "
+					+ "WHERE EMP.EMAIL = ? AND EMP.PASSWORD = ?";
 		pStmt = conn.prepareStatement(sql);
 		pStmt.setString(1, username);
 		pStmt.setString(2, password);
-		
 		ResultSet rs = pStmt.executeQuery();
-		rs.next();
 		
-		employee.setPID(rs.getInt(1));
-		employee.setFirstName(rs.getString(2));
-		employee.setLastName(rs.getString(3));
-		employee.setStreet(rs.getString(4));
-		employee.setCity(rs.getString(5));
-		employee.setState(rs.getString(6));
-		employee.setZipCode(rs.getString(7));
-		employee.setPhoneNumber(rs.getString(8));
-		employee.setEmail(rs.getString(9));
-		employee.setTitleID(rs.getInt(10));
-		employee.setDepartmentID(rs.getInt(11));
-		employee.setAvailableReimbursement(rs.getFloat(12));
-		closeResources();
-		return employee;
+		while(rs.next()){
+			e = new Employee();
+			e.setPID(rs.getInt("P_ID"));
+			e.setFirstName(rs.getString("FIRSTNAME"));
+			e.setLastName(rs.getString("LASTNAME"));
+			e.setDepartment(rs.getString("DEPARTMENT"));
+			e.setTitle("TITLE");
+		}
+		
+		return e;
 		
 	}
 	
 	@Override
-	public Employee getEmployeeSupervisor(int e_id, String department) {
-		// TODO Auto-generated method stub
-		return null;
+	public Employee getEmployeeSupervisor(int e_id) throws SQLException {
+		Employee e = null;
+		setup();
+		String sql = "SELECT EMP.P_ID, EMP.FIRSTNAME, EMP.LASTNAME, EMP.EMAIL, T.TITLE, DPT.DEPARTMENT "
+					+ "FROM EMPLOYEE EMP "
+					+ "INNER JOIN TITLE T ON T.T_ID = EMP.TITLE_ID "
+					+ "INNER JOIN DEPARTMENT DPT ON DPT.D_ID = EMP.DEPARTMENT_ID "
+					+ "WHERE ES.E_ID = ?;";
+		pStmt = conn.prepareStatement(sql);
+		pStmt.setInt(1, e_id);
+		ResultSet rs = pStmt.executeQuery();
+		
+		while(rs.next()){
+			e = new Employee();
+			e.setPID(rs.getInt("P_ID"));
+			e.setFirstName(rs.getString("FIRSTNAME"));
+			e.setLastName(rs.getString("LASTNAME"));
+			e.setDepartment(rs.getString("DEPARTMENT"));
+			e.setTitle("TITLE");
+		}
+		
+		return e;
 	}
 
 	@Override
-	public Employee getDirectManager(String department) {
-		// TODO Auto-generated method stub
-		return null;
+	public Employee getDirectManager(String department) throws SQLException {
+		Employee e = null;
+		List<Employee> list = new ArrayList<Employee>();
+		setup();
+		String sql = "SELECT EMP.P_ID, EMP.FIRSTNAME, EMP.LASTNAME, EMP.EMAIL, T.TITLE, DPT.DEPARTMENT "
+					+ "FROM EMPLOYEE EMP "
+					+ "INNER JOIN TITLE T ON T.T_ID = EMP.TITLE_ID "
+					+ "INNER JOIN DEPARTMENT DPT ON DPT.D_ID = EMP.DEPARTMENT_ID "
+					+ "WHERE UPPER(DPT.DEPARTMENT) = UPPER(?) AND EMP.TITLE_ID = 5";
+		pStmt = conn.prepareStatement(sql);
+		pStmt.setString(1, department);
+		
+		ResultSet rs = pStmt.executeQuery();
+		while(rs.next()){
+			e = new Employee();
+			e.setPID(rs.getInt("P_ID"));
+			e.setFirstName(rs.getString("FIRSTNAME"));
+			e.setLastName(rs.getString("LASTNAME"));
+			e.setDepartment(rs.getString("DEPARTMENT"));
+			e.setTitle("TITLE");
+			list.add(e);
+		}
+		
+		return randomEmployee(list);
 	}
 
 	@Override
-	public Employee getHeadOfDepartment(String department) {
-		// TODO Auto-generated method stub
-		return null;
+	public Employee getHeadOfDepartment(String department) throws SQLException {
+		Employee e = null;
+		setup();
+		String sql = "SELECT EMP.P_ID, EMP.FIRSTNAME, EMP.LASTNAME, EMP.EMAIL, T.TITLE, DPT.DEPARTMENT "
+					+ "FROM EMPLOYEE EMP "
+					+ "INNER JOIN TITLE T ON T.T_ID = EMP.TITLE_ID "
+					+ "INNER JOIN DEPARTMENT DPT ON DPT.D_ID = EMP.DEPARTMENT_ID "
+					+ "WHERE UPPER(DPT.DEPARTMENT) = UPPER(?) AND EMP.TITLE_ID = 1";
+		pStmt = conn.prepareStatement(sql);
+		pStmt.setString(1, department);
+		
+		ResultSet rs = pStmt.executeQuery();
+		while(rs.next()){
+			e = new Employee();
+			e.setPID(rs.getInt("P_ID"));
+			e.setFirstName(rs.getString("FIRSTNAME"));
+			e.setLastName(rs.getString("LASTNAME"));
+			e.setDepartment(rs.getString("DEPARTMENT"));
+			e.setTitle("TITLE");
+		}
+		
+		return e;
 	}
 
 	@Override
-	public Employee getBenco() {
-		// TODO Auto-generated method stub
-		return null;
+	public Employee getBenco() throws SQLException {
+		Employee e = null;
+		List<Employee> list = new ArrayList<Employee>();
+		setup();
+		String sql = "SELECT EMP.P_ID, EMP.FIRSTNAME, EMP.LASTNAME, EMP.EMAIL, T.TITLE, DPT.DEPARTMENT "
+					+ "FROM EMPLOYEE EMP "
+					+ "INNER JOIN TITLE T ON T.T_ID = EMP.TITLE_ID "
+					+ "INNER JOIN DEPARTMENT DPT ON DPT.D_ID = EMP.DEPARTMENT_ID "
+					+ "WHERE UPPER(DPT.DEPARTMENT) = UPPER('benco') AND EMP.TITLE_ID = 4";
+		pStmt = conn.prepareStatement(sql);
+		ResultSet rs = pStmt.executeQuery();
+		while(rs.next()){
+			e = new Employee();
+			e.setPID(rs.getInt("P_ID"));
+			e.setFirstName(rs.getString("FIRSTNAME"));
+			e.setLastName(rs.getString("LASTNAME"));
+			e.setDepartment(rs.getString("DEPARTMENT"));
+			e.setTitle("TITLE");
+			list.add(e);
+		}
+		
+		return randomEmployee(list);
+	}
+	
+	private Employee randomEmployee(List<Employee> list){// return a random employee to pick a benco or direct manager
+		Random randomGenerator = new Random();
+		int index = randomGenerator.nextInt(list.size()-1);
+		return list.get(index);
 	}
 	
 }

@@ -1,25 +1,39 @@
 package com.revature.trms.objects;
 
+import java.sql.Blob;
+import java.sql.Timestamp;
+import java.sql.Date;
+
+
+
 public class ReimbursementForm {
 
 	private int FID;
 	private int PID;
-	private String startDate;
-	private String startTime;
+	private Date startDate;
+	private Timestamp startTime;
 	private String street;
 	private String city;
 	private String state;
 	private String zipCode;
-	private String requestedAmount;
+	private double requestedAmount;
 	private String typeOfEvent;
-	private String gradingFormat;
+	private Blob gradingFormat;
 	private String description;
 	private String justification;
 	private int estimatedTimeOff;
 	private String finalGrade;
-	private String finalPresentation;
+	private Blob finalPresentation;
 	private String status;
 	private String title;
+	
+	
+
+	public ReimbursementForm() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
 
 	public int getFID() {
 		return FID;
@@ -37,20 +51,20 @@ public class ReimbursementForm {
 		PID = pID;
 	}
 
-	public String getStartDate() {
+	public Date getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(String startDate) {
+	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
 
-	public String getStartTime() {
+	public Timestamp getStartTime() {
 		return startTime;
 	}
 
-	public void setStartTime(String startTime) {
-		this.startTime = startTime;
+	public void setStartTime(Timestamp timestamp) {
+		this.startTime = timestamp;
 	}
 
 	public String getStreet() {
@@ -85,11 +99,11 @@ public class ReimbursementForm {
 		this.zipCode = zipCode;
 	}
 
-	public String getRequestedAmount() {
+	public double getRequestedAmount() {
 		return requestedAmount;
 	}
 
-	public void setRequestedAmount(String requestedAmount) {
+	public void setRequestedAmount(double requestedAmount) {
 		this.requestedAmount = requestedAmount;
 	}
 
@@ -101,11 +115,11 @@ public class ReimbursementForm {
 		this.typeOfEvent = typeOfEvent;
 	}
 
-	public String getGradingFormat() {
+	public Blob getGradingFormat() {
 		return gradingFormat;
 	}
 
-	public void setGradingFormat(String gradingFormat) {
+	public void setGradingFormat(Blob gradingFormat) {
 		this.gradingFormat = gradingFormat;
 	}
 
@@ -141,11 +155,11 @@ public class ReimbursementForm {
 		this.finalGrade = finalGrade;
 	}
 
-	public String getFinalPresentation() {
+	public Blob getFinalPresentation() {
 		return finalPresentation;
 	}
 
-	public void setFinalPresentation(String finalPresentation) {
+	public void setFinalPresentation(Blob finalPresentation) {
 		this.finalPresentation = finalPresentation;
 	}
 

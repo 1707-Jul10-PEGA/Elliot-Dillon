@@ -25,7 +25,7 @@ public interface EmployeeDAO {
 	
 	public Employee getEmployee(String username, String password) throws SQLException;
 	
-	public Employee getEmployeeSupervisor(int e_id, String department) throws SQLException;
+	public Employee getEmployeeSupervisor(int e_id) throws SQLException;
 	
 	public Employee getDirectManager(String department) throws SQLException;
 	

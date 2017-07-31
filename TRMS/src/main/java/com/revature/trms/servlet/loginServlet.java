@@ -49,7 +49,7 @@ public class loginServlet extends HttpServlet {
 			if(e != null){
 				request.getRequestDispatcher("TRMSHomePage.html").forward(request, response);
 			}else{
-				System.out.println("User does not exist");
+				request.getRequestDispatcher("index.html").forward(request, response);
 			}
 			
 		} catch (SQLException e) {
