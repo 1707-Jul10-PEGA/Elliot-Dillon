@@ -1,6 +1,5 @@
 var last_doc=1;
 
-
 $(document).ready(function() {
 
 	console.log("document loaded");
@@ -29,6 +28,7 @@ $(document).ready(function() {
 		$(".extra_doc").last().remove();
 	});
 	
+<<<<<<< HEAD
 	$("#test").click(function(e){
 		e.preventDefault();
 		console.log("in click");
@@ -51,3 +51,7 @@ $(document).ready(function() {
 	}
 	
 });
+=======
+});
+
+>>>>>>> progressBar
