@@ -91,9 +91,9 @@ public class FormDAOImpl extends DAOFactory implements FormDAO {
 					+ "INNER JOIN APPROVAL_TABLE APP_TAB ON APP_TAB.F_ID = RF.F_ID "
 					+ "INNER JOIN  TYPE_OF_EVENTS TOE ON TOE.TOE_ID = RF.TYPE_OF_EVENT "
 					+ "WHERE APP_TAB.SUPERVISOR = ? "
-					+ "OR APP_TAB.DEPARTMENT_HEAD = ?,"
+					+ "OR APP_TAB.DEPARTMENT_HEAD = ? "
 					+ "OR APP_TAB.BENCO = ?"
-					+ "OR APP_TAB.DIRECT_MANAGER = ?";
+					+ "OR APP_TAB.DIRECTOR_MANAGER = ?";
 		setup();
 		pStmt = conn.prepareStatement(sql);
 		pStmt.setInt(1, s_id);
@@ -146,9 +146,9 @@ public class FormDAOImpl extends DAOFactory implements FormDAO {
 				+ "INNER JOIN APPROVAL_TABLE APP_TAB ON APP_TAB.F_ID = RF.F_ID "
 				+ "INNER JOIN  TYPE_OF_EVENTS TOE ON TOE.TOE_ID = RF.TYPE_OF_EVENT "
 				+ "WHERE APP_TAB.SUPERVISOR = ? "
-				+ "OR APP_TAB.DEPARTMENT_HEAD = ?,"
-				+ "OR APP_TAB.BENCO = ?"
-				+ "OR APP_TAB.DIRECT_MANAGER = ?";
+				+ "OR APP_TAB.DEPARTMENT_HEAD = ? "
+				+ "OR APP_TAB.BENCO = ? "
+				+ "OR APP_TAB.DIRECTOR_MANAGER = ?";
 		setup();
 		pStmt = conn.prepareStatement(sql);
 		pStmt.setInt(1, s_id);

@@ -49,12 +49,10 @@ public class GetCurrentFormCountServlet extends HttpServlet {
 				currentFormCount = om.writeValueAsString(numCurrentForms);
 
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			
 			// print out the current count and write to the response
-			System.out.println(currentFormCount);
 			response.getWriter().write(currentFormCount);
 	}
 
