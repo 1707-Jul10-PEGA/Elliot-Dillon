@@ -28,12 +28,7 @@ $(document).ready(function() {
 		$(".extra_doc").last().remove();
 	});
 	
-<<<<<<< HEAD
-	$("#test").click(function(e){
-		e.preventDefault();
-		console.log("in click");
-		appendForms();
-	});
+
 	
 	//append the current list of forms 
 	function appendForms(){
@@ -51,7 +46,7 @@ $(document).ready(function() {
 	}
 	
 });
-=======
-});
 
->>>>>>> progressBar
+
+
+

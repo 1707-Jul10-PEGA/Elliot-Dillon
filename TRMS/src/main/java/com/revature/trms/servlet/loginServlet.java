@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.revature.trms.DAO.DAOFactory;
 import com.revature.trms.DAO.EmployeeDAO;
-import com.revature.trms.objects.Employee;
+import com.revature.trms.objects.EmployeeLogin;
 
 /**
  * Servlet implementation class loginServlet
@@ -44,9 +44,10 @@ public class loginServlet extends HttpServlet {
 			EmployeeDAO dao = (EmployeeDAO) DAOFactory.getDAO("EmployeeDAO");
 			String username = request.getParameter("username");
 			String password = request.getParameter("password");
-			Employee e = dao.getEmployee(username, password);
+			EmployeeLogin e = dao.getEmployeeLogin(username, password);
 			
 			if(e != null){
+				request.getSession().setAttribute("EmployeeLogin", e);
 				response.sendRedirect(request.getContextPath()+"/home");
 			}else{
 				request.getSession().setAttribute("message", "Username and password are not recognized!");

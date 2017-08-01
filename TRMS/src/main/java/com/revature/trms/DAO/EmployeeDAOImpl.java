@@ -10,6 +10,7 @@ import java.util.Random;
 
 import com.revature.trms.connectionfactory.ConnectionFactory;
 import com.revature.trms.objects.Employee;
+import com.revature.trms.objects.EmployeeLogin;
 
 public class EmployeeDAOImpl extends DAOFactory implements EmployeeDAO {
 
@@ -144,7 +145,32 @@ public class EmployeeDAOImpl extends DAOFactory implements EmployeeDAO {
 		
 		return e;
 	}
-
+	
+	public EmployeeLogin getEmployeeLogin(String username, String password) throws SQLException{
+		EmployeeLogin e = null;
+		setup();
+		String sql = "SELECT EMP.P_ID, EMP.FIRSTNAME, EMP.LASTNAME, EMP.EMAIL, T.TITLE, DPT.DEPARTMENT "
+					+ "FROM EMPLOYEE EMP "
+					+ "INNER JOIN TITLE T ON T.T_ID = EMP.TITLE_ID "
+					+ "INNER JOIN DEPARTMENT DPT ON DPT.D_ID = EMP.DEPARTMENT_ID "
+					+ "WHERE EMP.EMAIL = ? AND EMP.PASSWORD = ?";
+		pStmt = conn.prepareStatement(sql);
+		pStmt.setString(1, username);
+		pStmt.setString(2, password);
+		ResultSet rs = pStmt.executeQuery();
+		
+		while(rs.next()){
+			e = new EmployeeLogin();
+			e.setPID(rs.getInt("P_ID"));
+			e.setFirstName(rs.getString("FIRSTNAME"));
+			e.setLastName(rs.getString("LASTNAME"));
+			e.setDepartment(rs.getString("DEPARTMENT"));
+			e.setTitle("TITLE");
+		}
+		
+		return e;
+	}
+	
 	@Override
 	public Employee getDirectManager(String department) throws SQLException {
 		Employee e = null;

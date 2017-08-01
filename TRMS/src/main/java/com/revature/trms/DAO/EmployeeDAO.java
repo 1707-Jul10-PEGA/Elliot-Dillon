@@ -3,6 +3,7 @@ package com.revature.trms.DAO;
 import java.sql.SQLException;
 
 import com.revature.trms.objects.Employee;
+import com.revature.trms.objects.EmployeeLogin;
 
 public interface EmployeeDAO {
 
@@ -33,4 +34,5 @@ public interface EmployeeDAO {
 	
 	public Employee getBenco() throws SQLException;
 	
+	public EmployeeLogin getEmployeeLogin(String username, String password) throws SQLException;
 }
