@@ -112,7 +112,7 @@ public class FormDAOImpl extends DAOFactory implements FormDAO {
 	}
 
 	@Override
-	public List<ReimbursementForm>  getPendingRequests(int s_id) throws SQLException {
+	public List<ReimbursementForm>  getPendingRequests(int s_id) throws SQLException {//retrieves forms that the user needs to review
 		List<ReimbursementForm> list = new ArrayList<ReimbursementForm>();
 		String sql = "SELECT * "
 					+ "FROM REIMBURSEMENT_FORMS RF "

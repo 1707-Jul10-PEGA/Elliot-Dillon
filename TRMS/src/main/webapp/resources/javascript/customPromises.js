@@ -54,8 +54,29 @@ function promiseGetPendingRequestCount(){
 
 function promiseGetListOfCurrentForms(){
 	return new Promise(function(resolve,reject){
+		console.log("getting the forms");
 		$.ajax({
 		    url:'getListOfCurrentForms',
+		    type:'GET'
+		  })
+		    .done(function(response){
+		    	console.log(response);
+		    	var forms = JSON.parse(response);
+		    	console.log(forms);
+		    	resolve(forms);
+		    })
+		    .fail(function(response){
+		      console.log("error");
+		      reject(null);
+		    });
+	});
+}
+
+function promiseGetListOfRequestedReviews(){
+	return new Promise(function(resolve,reject){
+		console.log("getting the forms");
+		$.ajax({
+		    url:'getListOfRequests',
 		    type:'GET'
 		  })
 		    .done(function(response){
