@@ -19,3 +19,20 @@ function promiseGetEmployee(){
 		    });
 	});
 }
+
+function promiseGetCurrentFormCount(){
+	return new Promise(function(resolve,reject){
+		$.ajax({
+		    url:'getCurrentFormCount',
+		    type:'GET'
+		  })
+		    .done(function(response){
+		      console.log(response);
+		      resolve(employee);
+		    })
+		    .fail(function(response){
+		      console.log("error");
+		      reject(null);
+		    });
+	});
+}
