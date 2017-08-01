@@ -60,7 +60,9 @@ function promiseGetListOfCurrentForms(){
 		  })
 		    .done(function(response){
 		    	console.log(response);
-		    	resolve(response);
+		    	var forms = JSON.parse(response);
+		    	console.log(forms);
+		    	resolve(forms);
 		    })
 		    .fail(function(response){
 		      console.log("error");

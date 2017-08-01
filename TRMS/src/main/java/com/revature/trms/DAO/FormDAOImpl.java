@@ -16,9 +16,12 @@ public class FormDAOImpl extends DAOFactory implements FormDAO {
 
 	private Connection conn = null;
 	private PreparedStatement pStmt = null;
+	private ConnectionFactory connectionFactory;
+	
 	// setup a connection
 	public void setup() throws SQLException {
-		conn = ConnectionFactory.getInstance().getConnection();
+		connectionFactory = ConnectionFactory.getInstance();
+		conn = connectionFactory.getConnection();
 	}	
 	
 	
@@ -99,6 +102,7 @@ public class FormDAOImpl extends DAOFactory implements FormDAO {
 			rf.setRequestedAmount(rs.getDouble("REQUESTED_AMOUNT"));
 			rf.setTypeOfEvent(rs.getString("EVENT"));
 			rf.setGradingFormat(rs.getString("GRADING_FORMAT"));
+			rf.setDescription(rs.getString("DESCRIPTION"));
 			rf.setFinalPresentation(rs.getBlob("FINAL_PRESENTATION"));
 			rf.setStatus(rs.getString("STATUS"));
 			rf.setTitle(rs.getString("TITLE"));

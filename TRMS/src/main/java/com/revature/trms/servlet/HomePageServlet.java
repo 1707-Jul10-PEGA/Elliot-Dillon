@@ -8,8 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.revature.trms.DAO.EmployeeDAO;
-
 /**
  * Servlet implementation class HomePage
  */
@@ -30,8 +28,7 @@ public class HomePageServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher("TRMSHomePage.html").forward(request, response);
-
-		EmployeeDAO dao = null;
+		
 	}
 
 	

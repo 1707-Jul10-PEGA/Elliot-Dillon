@@ -38,7 +38,7 @@ public class GetListOfCurrentFormsServlet extends HttpServlet {
 		FormDAO dao;
 		String listOfCurrentFormsStr = null;
 		List<ReimbursementForm> listOfCurrentForms = null;
-		List<ReimbursementForm> listOfCurrentFormsJson = null;
+		
 
 		try {
 			dao = (FormDAO) DAOFactory.getDAO("FormDAO");
