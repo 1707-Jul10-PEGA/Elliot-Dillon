@@ -66,8 +66,8 @@
 				<div class="form-group col-3">
 					<label for="state">State</label>
 					<select class="form-control" name="state" id="state" required="required">
-					 <option value="AL">Alabama</option>
-					    <option value="AK">Alaska</option>
+					 	<option value="AL">Alabama</option>
+					    <option  value="AK">Alaska</option>
 					    <option value="AZ">Arizona</option>
 					    <option value="AR">Arkansas</option>
 					    <option value="CA">California</option>
@@ -131,12 +131,12 @@
 				<div class="form-group col-3">
 					<label for="event_type">Event</label>
 					<select class="form-control" name="type_of_event" id="event_type" required="required">
-						<option>University Courses</option>
-						<option>Seminars</option>
-						<option>Certification Preparation Classes</option>
-						<option>Certification</option>
-						<option>Technical Training</option>
-						<option>Other</option>
+						<option value="University Courses">University Courses</option>
+						<option value="Seminars">Seminars</option>
+						<option value="Certification Preparation Classes">Certification Preparation Classes</option>
+						<option value="Certification">Certification</option>
+						<option value="Technical Training">Technical Training</option>
+						<option value="Other">Other</option>
 					</select>
 				</div>
 				
@@ -157,7 +157,7 @@
 				
 				<div class="form-group col-2">
 					<label for="timeoff">Hours Off</label>
-					<input type="number" name="time_off" class="form-control" id=timeoff required="required"/>
+					<input type="number" name="time_off" class="form-control" id=timeoff/>
 				</div>
 			</div>
 
@@ -168,7 +168,11 @@
 
 			<div class="form-group">
 				<label for="grading_format">Grading Format</label>
-				<input type="file" name="grading_format" placeholder="Content" class="form-control-file" id=grading_format required="required"/>
+				<select class="form-control" name="grading_format" id="grading_format" required="required">
+					<option value="Percentage">Percentage</option>
+					<option value="Pass/Fail">Pass/Fail</option>
+					<option value="Other">Other</option>
+				</select>
 			</div>
 			
 			<!-- Add multiple documents to the form -->

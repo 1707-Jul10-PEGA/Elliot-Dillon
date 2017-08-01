@@ -1,24 +1,23 @@
 package com.revature.trms.servlet;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.sql.Blob;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
-import javax.sql.rowset.serial.SerialBlob;
 
 import com.revature.trms.DAO.DAOFactory;
 import com.revature.trms.DAO.FormDAO;
 import com.revature.trms.DAO.FormDAOImpl;
 import com.revature.trms.objects.ReimbursementForm;
 
+
+
+@MultipartConfig
 @WebServlet("/reimbursementForm")
 public class ReimbursementFormServlet extends HttpServlet {
 
@@ -26,6 +25,7 @@ public class ReimbursementFormServlet extends HttpServlet {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -42,40 +42,16 @@ public class ReimbursementFormServlet extends HttpServlet {
 		rf.setCity(req.getParameter("city"));
 		rf.setState(req.getParameter("state"));
 		rf.setZipCode(req.getParameter("zipcode"));
-		rf.setTypeOfEvent("type_of_event");
+		rf.setTypeOfEvent(req.getParameter("type_of_event"));
 		
 		rf.setStartDate(req.getParameter("start_date"));
 		rf.setStartTime(req.getParameter("start_time"));
 		rf.setRequestedAmount(Double.parseDouble(req.getParameter("requested_amount")));
 		rf.setEstimatedTimeOff(Integer.parseInt(req.getParameter("time_off")));
 		rf.setDescription(req.getParameter("description"));
+		rf.setGradingFormat(req.getParameter("grading_format"));
 		
 		
-		Part content = req.getPart("grading_format");
-		
-		InputStream is =null;
-		ByteArrayOutputStream os = null;
-		
-		
-		
-		try {
-			is = content.getInputStream();
-			os = new ByteArrayOutputStream();
-			byte[] buffer = new byte[1024];
-
-			while (is.read(buffer) != -1) {
-				os.write(buffer);
-			}
-			
-			Blob blob = new SerialBlob(buffer);
-			rf.setGradingFormat(blob);
-
-		} catch (IOException | SQLException e) {
-			e.printStackTrace();
-		}finally{
-			is.close();
-			os.close();
-		}
 		
 		try {
 			FormDAO dao = (FormDAOImpl)DAOFactory.getDAO("FormDAO");

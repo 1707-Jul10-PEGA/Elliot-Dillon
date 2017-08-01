@@ -16,7 +16,7 @@ public class ReimbursementForm {
 	private String zipCode;
 	private double requestedAmount;
 	private String typeOfEvent;
-	private Blob gradingFormat;
+	private String gradingFormat;
 	private String description;
 	private String justification;
 	private int estimatedTimeOff;
@@ -113,11 +113,11 @@ public class ReimbursementForm {
 		this.typeOfEvent = typeOfEvent;
 	}
 
-	public Blob getGradingFormat() {
+	public String getGradingFormat() {
 		return gradingFormat;
 	}
 
-	public void setGradingFormat(Blob gradingFormat) {
+	public void setGradingFormat(String gradingFormat) {
 		this.gradingFormat = gradingFormat;
 	}
 

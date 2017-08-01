@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
 import com.revature.trms.connectionfactory.ConnectionFactory;
 import com.revature.trms.objects.ReimbursementForm;
 
@@ -23,10 +25,10 @@ public class FormDAOImpl extends DAOFactory implements FormDAO {
 	@Override
 	public boolean submitReimbursementForm(ReimbursementForm form) throws SQLException {
 		String sql = "INSERT INTO REIMBURSEMENT_FORMS "
-				+ "(P_ID, START_DATE, START_TIME, STREET_ADDRESS, CITY, STATE, ZIP_CODE, REQUESTED_AMOUNT, TYPE_OF_EVENT, GRADING_FORMAT,"
-				+ " DESCRIPTION, WORK_RELATED_JUSTIFICATION, ESTIMATED_TIME_OFF, FINAL_GRADE, FINAL_PRESENTATION, STATUS, TITLE)"
-				+ "VALUES"
-				+ "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+					+ " (P_ID, START_DATE, START_TIME,STREET_ADDRESS,CITY,STATE,ZIP_CODE, "
+					+ "REQUESTED_AMOUNT, TYPE_OF_EVENT,DESCRIPTION,WORK_RELATED_JUSTIFICATION,"
+					+ "ESTIMATED_TIME_OFF,FINAL_GRADE,FINAL_PRESENTATION,STATUS,TITLE,GRADING_FORMAT) "
+					+ "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		setup();
 		pStmt = conn.prepareStatement(sql);
 		
@@ -35,19 +37,41 @@ public class FormDAOImpl extends DAOFactory implements FormDAO {
 		pStmt.setString(3, form.getStartTime());
 		pStmt.setString(4, form.getStreet());
 		pStmt.setString(5, form.getCity());
-		pStmt.setString(6, form.getCity());
+		pStmt.setString(6, form.getState());
 		pStmt.setString(7, form.getZipCode());
 		pStmt.setDouble(8, form.getRequestedAmount());
-		pStmt.setString(9, form.getTypeOfEvent());
-		pStmt.setBlob(10, form.getGradingFormat());
-		pStmt.setString(11, form.getDescription());
-		pStmt.setString(12, form.getJustification());
-		pStmt.setInt(13, form.getEstimatedTimeOff());
-		pStmt.setString(14, form.getFinalGrade());
-		pStmt.setBlob(15, form.getFinalPresentation());
-		pStmt.setString(16, form.getStatus());
-		pStmt.setString(17, form.getTitle());
-		int submit = pStmt.executeUpdate();					
+		
+		switch(form.getTypeOfEvent()){
+		case "University Courses":
+			pStmt.setInt(9, 1);
+			break;
+		case "Seminars":
+			pStmt.setInt(9, 2);
+			break;
+		case "Certification Preparation Classes":
+			pStmt.setInt(9, 3);
+			break;
+		case "Certification":
+			pStmt.setInt(9, 4);
+			break;
+		case "Technical Training":
+			pStmt.setInt(9, 5);
+			break;
+		case "Other":
+			pStmt.setInt(9, 6);
+			break;
+		}
+
+		pStmt.setString(10, form.getDescription());
+		pStmt.setString(11, form.getJustification());
+		pStmt.setInt(12, form.getEstimatedTimeOff());
+		pStmt.setString(13, form.getFinalGrade());
+		pStmt.setBlob(14, form.getFinalPresentation());
+		pStmt.setString(15, "Pending");
+		pStmt.setString(16, form.getTitle());
+		pStmt.setString(17, form.getGradingFormat());
+		int submit = pStmt.executeUpdate();
+		
 		return (submit==1)?true:false;
 	}
 
@@ -74,7 +98,7 @@ public class FormDAOImpl extends DAOFactory implements FormDAO {
 			rf.setZipCode(rs.getString("ZIP_CODE"));
 			rf.setRequestedAmount(rs.getDouble("REQUESTED_AMOUNT"));
 			rf.setTypeOfEvent(rs.getString("EVENT"));
-			rf.setGradingFormat(rs.getBlob("GRADING_FORMAT"));
+			rf.setGradingFormat(rs.getString("GRADING_FORMAT"));
 			rf.setFinalPresentation(rs.getBlob("FINAL_PRESENTATION"));
 			rf.setStatus(rs.getString("STATUS"));
 			rf.setTitle(rs.getString("TITLE"));
@@ -114,7 +138,7 @@ public class FormDAOImpl extends DAOFactory implements FormDAO {
 			rf.setZipCode(rs.getString("ZIP_CODE"));
 			rf.setRequestedAmount(rs.getDouble("REQUESTED_AMOUNT"));
 			rf.setTypeOfEvent(rs.getString("EVENT"));
-			rf.setGradingFormat(rs.getBlob("GRADING_FORMAT"));
+			rf.setGradingFormat(rs.getString("GRADING_FORMAT"));
 			rf.setFinalPresentation(rs.getBlob("FINAL_PRESENTATION"));
 			rf.setStatus(rs.getString("STATUS"));
 			rf.setTitle(rs.getString("TITLE"));
@@ -187,7 +211,7 @@ public class FormDAOImpl extends DAOFactory implements FormDAO {
 			rf.setZipCode(rs.getString("ZIP_CODE"));
 			rf.setRequestedAmount(rs.getDouble("REQUESTED_AMOUNT"));
 			rf.setTypeOfEvent(rs.getString("EVENT"));
-			rf.setGradingFormat(rs.getBlob("GRADING_FORMAT"));
+			rf.setGradingFormat(rs.getString("GRADING_FORMAT"));
 			rf.setFinalPresentation(rs.getBlob("FINAL_PRESENTATION"));
 			rf.setStatus(rs.getString("STATUS"));
 			rf.setTitle(rs.getString("TITLE"));
