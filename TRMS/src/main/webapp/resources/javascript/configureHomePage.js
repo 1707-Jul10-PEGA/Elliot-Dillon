@@ -15,19 +15,25 @@ $(document).ready(function(){
 			configureCurrentFormCount(currentFormCount);
 		});
 
-});
+	promiseGetListOfCurrentForms()
+		.then(function(listOfCurrentForms){
+			configureListOfCurrentForms(listOfCurrentForms);
+		});
 
-// promise function for pending requests count
+});
 
 function configureWelcomeTag(name){
 	$("#welcome").text("WELCOME BACK " + name.firstName +" "+ name.lastName +"!");
 }
 
 function configurePendingRequestCount(pendingRequestCount) {
-	$("#request").text("You currently have "+ pendingRequestCount + " pending requests!");
+	$("#request").text(pendingRequestCount + " pending requests");
 }
 
 function configureCurrentFormCount(currentFormCount) {
-	$("#current").text("You have submitted "+ currentFormCount + " forms!");
+	$("#current").text("Submitted "+ currentFormCount + " forms!");
 }
 
+function configureListOfCurrentForms(listOfCurrentForms) {
+	$("#current").text("List of current forms: "+ listOfCurrentForms);
+}

@@ -51,3 +51,19 @@ function promiseGetPendingRequestCount(){
 		    });
 	});
 }
+
+function promiseGetListOfCurrentForms(){
+	return new Promise(function(resolve,reject){
+		$.ajax({
+		    url:'getListOfCurrentForms',
+		    type:'GET'
+		  })
+		    .done(function(response){
+		      resolve(response);
+		    })
+		    .fail(function(response){
+		      console.log("error");
+		      reject(null);
+		    });
+	});
+}

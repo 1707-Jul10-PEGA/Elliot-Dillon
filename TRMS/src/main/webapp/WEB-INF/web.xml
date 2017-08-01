@@ -19,4 +19,14 @@
     <servlet-name>GetPendingRequestCount</servlet-name>
     <url-pattern>/GetPendingRequestCount</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>GetListOfCurrentForms</display-name>
+    <servlet-name>GetListOfCurrentForms</servlet-name>
+    <servlet-class>com.revature.trms.servlet.GetListOfCurrentForms</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetListOfCurrentForms</servlet-name>
+    <url-pattern>/GetListOfCurrentForms</url-pattern>
+  </servlet-mapping>
 </web-app>

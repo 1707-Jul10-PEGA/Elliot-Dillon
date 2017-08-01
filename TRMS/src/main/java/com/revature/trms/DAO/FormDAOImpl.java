@@ -56,7 +56,7 @@ public class FormDAOImpl extends DAOFactory implements FormDAO {
 		List<ReimbursementForm> list = new ArrayList<ReimbursementForm>();
 		String sql = "SELECT * "
 					+ "FROM REIMBURSEMENT_FORMS RF "
-					+ "INNER JOIN  TYPE_OF_EVENTS TOE ON TOE.TOE_ID = RF.TYPE_OF_EVENT"
+					+ "INNER JOIN TYPE_OF_EVENTS TOE ON TOE.TOE_ID = RF.TYPE_OF_EVENT "
 					+ "WHERE RF.P_ID = ?";
 		setup();
 		pStmt = conn.prepareStatement(sql);
