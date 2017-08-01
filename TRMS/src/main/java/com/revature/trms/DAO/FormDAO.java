@@ -7,9 +7,6 @@ import com.revature.trms.objects.ReimbursementForm;
 
 public interface FormDAO {
 
-	// insert a form with the given information into the database
-	// TODO: Only need first name and last name of employee for the form
-	
 	public boolean submitReimbursementForm(ReimbursementForm form) throws SQLException;
 	
 	public List<ReimbursementForm> getEmployeeSubmitedForms(int e_id) throws SQLException;

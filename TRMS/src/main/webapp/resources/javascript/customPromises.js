@@ -19,3 +19,51 @@ function promiseGetEmployee(){
 		    });
 	});
 }
+
+function promiseGetCurrentFormCount(){
+	return new Promise(function(resolve,reject){
+		$.ajax({
+		    url:'getCurrentFormCount',
+		    type:'GET'
+		  })
+		    .done(function(response){
+		      resolve(response);
+		    })
+		    .fail(function(response){
+		      console.log("error");
+		      reject(null);
+		    });
+	});
+}
+
+function promiseGetPendingRequestCount(){
+	return new Promise(function(resolve,reject){
+		$.ajax({
+		    url:'getPendingRequestCount',
+		    type:'GET'
+		  })
+		    .done(function(response){
+		      resolve(response);
+		    })
+		    .fail(function(response){
+		      console.log("error");
+		      reject(null);
+		    });
+	});
+}
+
+function promiseGetListOfCurrentForms(){
+	return new Promise(function(resolve,reject){
+		$.ajax({
+		    url:'getListOfCurrentForms',
+		    type:'GET'
+		  })
+		    .done(function(response){
+		      resolve(response);
+		    })
+		    .fail(function(response){
+		      console.log("error");
+		      reject(null);
+		    });
+	});
+}
