@@ -21,13 +21,13 @@ import com.revature.trms.objects.EmployeeLogin;
  * Servlet implementation class GetListOfCurrentForms
  */
 @WebServlet("/getListOfCurrentForms")
-public class GetListOfCurrentForms extends HttpServlet {
+public class GetListOfCurrentFormsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GetListOfCurrentForms() {
+    public GetListOfCurrentFormsServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
