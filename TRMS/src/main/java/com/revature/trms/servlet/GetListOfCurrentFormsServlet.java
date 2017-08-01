@@ -63,10 +63,9 @@ public class GetListOfCurrentFormsServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		for(ReimbursementForm rf : listOfCurrentForms) {
-			System.out.println(rf);
-			response.getWriter().write(rf.getCity());
-		}
+		
+		System.out.println(listOfCurrentFormsStr);
+		response.getWriter().write(listOfCurrentFormsStr);
 
 		
 	}

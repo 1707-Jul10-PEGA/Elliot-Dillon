@@ -65,7 +65,7 @@ public class FormDAOImpl extends DAOFactory implements FormDAO {
 		while(rs.next()){
 			ReimbursementForm rf = new ReimbursementForm();
 			rf.setFID(rs.getInt("F_ID"));
-			rf.setPID(rs.getInt("P__ID"));
+			rf.setPID(rs.getInt("P_ID"));
 			rf.setStartDate(rs.getString("START_DATE"));
 			rf.setStartTime(rs.getString("START_TIME"));
 			rf.setStreet(rs.getString("STREET_ADDRESS"));
