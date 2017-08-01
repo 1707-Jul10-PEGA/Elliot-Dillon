@@ -31,8 +31,8 @@ public class FormDAOImpl extends DAOFactory implements FormDAO {
 		pStmt = conn.prepareStatement(sql);
 		
 		pStmt.setInt(1, form.getPID());
-		pStmt.setDate(2, form.getStartDate());
-		pStmt.setTimestamp(3, form.getStartTime());
+		pStmt.setString(2, form.getStartDate());
+		pStmt.setString(3, form.getStartTime());
 		pStmt.setString(4, form.getStreet());
 		pStmt.setString(5, form.getCity());
 		pStmt.setString(6, form.getCity());
@@ -66,8 +66,8 @@ public class FormDAOImpl extends DAOFactory implements FormDAO {
 			ReimbursementForm rf = new ReimbursementForm();
 			rf.setFID(rs.getInt("F_ID"));
 			rf.setPID(rs.getInt("P__ID"));
-			rf.setStartDate(rs.getDate("START_DATE"));
-			rf.setStartTime(rs.getTimestamp("START_TIME"));
+			rf.setStartDate(rs.getString("START_DATE"));
+			rf.setStartTime(rs.getString("START_TIME"));
 			rf.setStreet(rs.getString("STREET_ADDRESS"));
 			rf.setCity(rs.getString("CITY"));
 			rf.setState(rs.getString("STATE"));
@@ -106,8 +106,8 @@ public class FormDAOImpl extends DAOFactory implements FormDAO {
 			ReimbursementForm rf = new ReimbursementForm();
 			rf.setFID(rs.getInt("F_ID"));
 			rf.setPID(rs.getInt("P__ID"));
-			rf.setStartDate(rs.getDate("START_DATE"));
-			rf.setStartTime(rs.getTimestamp("START_TIME"));
+			rf.setStartDate(rs.getString("START_DATE"));
+			rf.setStartTime(rs.getString("START_TIME"));
 			rf.setStreet(rs.getString("STREET_ADDRESS"));
 			rf.setCity(rs.getString("CITY"));
 			rf.setState(rs.getString("STATE"));
@@ -179,8 +179,8 @@ public class FormDAOImpl extends DAOFactory implements FormDAO {
 			rf = new ReimbursementForm();
 			rf.setFID(rs.getInt("F_ID"));
 			rf.setPID(rs.getInt("P__ID"));
-			rf.setStartDate(rs.getDate("START_DATE"));
-			rf.setStartTime(rs.getTimestamp("START_TIME"));
+			rf.setStartDate(rs.getString("START_DATE"));
+			rf.setStartTime(rs.getString("START_TIME"));
 			rf.setStreet(rs.getString("STREET_ADDRESS"));
 			rf.setCity(rs.getString("CITY"));
 			rf.setState(rs.getString("STATE"));

@@ -1,8 +1,6 @@
 package com.revature.trms.objects;
 
 import java.sql.Blob;
-import java.sql.Timestamp;
-import java.sql.Date;
 
 
 
@@ -10,8 +8,8 @@ public class ReimbursementForm {
 
 	private int FID;
 	private int PID;
-	private Date startDate;
-	private Timestamp startTime;
+	private String startDate;
+	private String startTime;
 	private String street;
 	private String city;
 	private String state;
@@ -51,19 +49,19 @@ public class ReimbursementForm {
 		PID = pID;
 	}
 
-	public Date getStartDate() {
+	public String getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(Date startDate) {
+	public void setStartDate(String startDate) {
 		this.startDate = startDate;
 	}
 
-	public Timestamp getStartTime() {
+	public String getStartTime() {
 		return startTime;
 	}
 
-	public void setStartTime(Timestamp timestamp) {
+	public void setStartTime(String timestamp) {
 		this.startTime = timestamp;
 	}
 
@@ -179,6 +177,7 @@ public class ReimbursementForm {
 		this.title = title;
 	}
 
+
 	@Override
 	public String toString() {
 		return "ReimbursementForm [FID=" + FID + ", PID=" + PID + ", startDate=" + startDate + ", startTime="
@@ -186,7 +185,9 @@ public class ReimbursementForm {
 				+ ", requestedAmount=" + requestedAmount + ", typeOfEvent=" + typeOfEvent + ", gradingFormat="
 				+ gradingFormat + ", description=" + description + ", justification=" + justification
 				+ ", estimatedTimeOff=" + estimatedTimeOff + ", finalGrade=" + finalGrade + ", finalPresentation="
-				+ finalPresentation + ", status=" + status + "]";
+				+ finalPresentation + ", status=" + status + ", title=" + title + "]";
 	}
+
+	
 	
 }

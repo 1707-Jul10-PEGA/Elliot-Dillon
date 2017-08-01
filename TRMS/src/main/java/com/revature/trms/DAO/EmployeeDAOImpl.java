@@ -149,7 +149,7 @@ public class EmployeeDAOImpl extends DAOFactory implements EmployeeDAO {
 	public EmployeeLogin getEmployeeLogin(String username, String password) throws SQLException{
 		EmployeeLogin e = null;
 		setup();
-		String sql = "SELECT EMP.P_ID, EMP.FIRSTNAME, EMP.LASTNAME, EMP.EMAIL, T.TITLE, DPT.DEPARTMENT "
+		String sql = "SELECT EMP.P_ID, EMP.FIRSTNAME, EMP.LASTNAME, EMP.EMAIL,EMP.PHONE_NUMBER ,T.TITLE, DPT.DEPARTMENT "
 					+ "FROM EMPLOYEE EMP "
 					+ "INNER JOIN TITLE T ON T.T_ID = EMP.TITLE_ID "
 					+ "INNER JOIN DEPARTMENT DPT ON DPT.D_ID = EMP.DEPARTMENT_ID "
@@ -166,6 +166,8 @@ public class EmployeeDAOImpl extends DAOFactory implements EmployeeDAO {
 			e.setLastName(rs.getString("LASTNAME"));
 			e.setDepartment(rs.getString("DEPARTMENT"));
 			e.setTitle(rs.getString("TITLE"));
+			e.setEmail(rs.getString("EMAIL"));
+			e.setPhonenumber(rs.getString("PHONE_NUMBER"));
 		}
 		
 		return e;
@@ -228,7 +230,7 @@ public class EmployeeDAOImpl extends DAOFactory implements EmployeeDAO {
 		Employee e = null;
 		List<Employee> list = new ArrayList<Employee>();
 		setup();
-		String sql = "SELECT EMP.P_ID, EMP.FIRSTNAME, EMP.LASTNAME, EMP.EMAIL, T.TITLE, DPT.DEPARTMENT "
+		String sql = "SELECT EMP.P_ID, EMP.FIRSTNAME, EMP.LASTNAME, EMP.EMAIL, EMP.PHONE_NUMBER, T.TITLE, DPT.DEPARTMENT "
 					+ "FROM EMPLOYEE EMP "
 					+ "INNER JOIN TITLE T ON T.T_ID = EMP.TITLE_ID "
 					+ "INNER JOIN DEPARTMENT DPT ON DPT.D_ID = EMP.DEPARTMENT_ID "
@@ -242,6 +244,8 @@ public class EmployeeDAOImpl extends DAOFactory implements EmployeeDAO {
 			e.setLastName(rs.getString("LASTNAME"));
 			e.setDepartment(rs.getString("DEPARTMENT"));
 			e.setTitle("TITLE");
+			e.setEmail(rs.getString("EMAIL"));
+			e.setPhoneNumber(rs.getString("PHONE_NUMBER"));
 			list.add(e);
 		}
 		
