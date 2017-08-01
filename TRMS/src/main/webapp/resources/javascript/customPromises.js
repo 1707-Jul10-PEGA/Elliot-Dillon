@@ -59,7 +59,8 @@ function promiseGetListOfCurrentForms(){
 		    type:'GET'
 		  })
 		    .done(function(response){
-		      resolve(response);
+		    	console.log(response);
+		    	resolve(response);
 		    })
 		    .fail(function(response){
 		      console.log("error");

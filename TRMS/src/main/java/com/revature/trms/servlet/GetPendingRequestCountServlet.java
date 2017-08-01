@@ -2,7 +2,6 @@ package com.revature.trms.servlet;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,19 +13,18 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.trms.DAO.DAOFactory;
 import com.revature.trms.DAO.FormDAO;
 import com.revature.trms.objects.EmployeeLogin;
-import com.revature.trms.objects.ReimbursementForm;
 
 /**
- * Servlet implementation class GetListOfCurrentForms
+ * Servlet implementation class GetPendingRequestCount
  */
-@WebServlet("/getListOfCurrentForms")
-public class GetListOfCurrentForms extends HttpServlet {
+@WebServlet("/getPendingRequestCount")
+public class GetPendingRequestCountServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+       
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GetListOfCurrentForms() {
+    public GetPendingRequestCountServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,10 +34,7 @@ public class GetListOfCurrentForms extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		FormDAO dao;
-		String listOfCurrentFormsStr = null;
-		List<ReimbursementForm> listOfCurrentForms = null;
-		List<ReimbursementForm> listOfCurrentFormsJson = null;
-
+		String pendingRequestCount = null;
 		try {
 			dao = (FormDAO) DAOFactory.getDAO("FormDAO");
 			
@@ -48,32 +43,25 @@ public class GetListOfCurrentForms extends HttpServlet {
 			
 			ObjectMapper om = new ObjectMapper();
 			
-			// get the list of current forms from the employee session
-			listOfCurrentForms = dao.getEmployeeSubmitedForms(e.getPID());
+			// get the number of pending requests 
+			int numPendingRequests = dao.getEmployeeReviewCount(e.getPID());
 			
-			// get a string representation of the list
-			listOfCurrentFormsStr = om.writeValueAsString(listOfCurrentForms);
-
-			// parse the string list to a json object
-			//listOfCurrentFormsJson = om.readValue(listOfCurrentFormsStr, new TypeReference<List<ReimbursementForm>>(){});
-			
+			pendingRequestCount = om.writeValueAsString(numPendingRequests);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
-		for(ReimbursementForm rf : listOfCurrentForms) {
-			System.out.println(rf);
-			response.getWriter().write(rf.getCity());
-		}
-
-		
+		// print out the current count and write to the response
+		System.out.println(pendingRequestCount);
+		response.getWriter().write(pendingRequestCount);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
