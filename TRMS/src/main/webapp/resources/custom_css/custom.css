@@ -2,11 +2,13 @@
 	border:5px solid red;	
 }
 
-<<<<<<< HEAD
-
-
-=======
-#progress_bar{
-	padding:5px;
+#approval_header{
+	text-align: center;
+	color: #ffffff;
 }
->>>>>>> progressBar
+
+#progress_bar{
+	background-color: #007acc;
+	padding: 5px;
+	margin-top: 25px;
+}
