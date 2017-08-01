@@ -15,6 +15,11 @@ $(document).ready(function(){
 			configureCurrentFormCount(currentFormCount);
 		});
 
+//	promiseGetListOfCurrentForms()
+//		.then(function(listOfCurrentForms){
+//			configureListOfCurrentForms(listOfCurrentForms);
+//		});
+
 });
 
 function configureWelcomeTag(name){
@@ -28,3 +33,7 @@ function configurePendingRequestCount(pendingRequestCount) {
 function configureCurrentFormCount(currentFormCount) {
 	$("#current").text("Submitted "+ currentFormCount + " forms!");
 }
+
+//function configureListOfCurrentForms(listOfCurrentForms) {
+//	$("#current").text("List of current forms: "+ listOfCurrentForms);
+//}
