@@ -18,7 +18,7 @@ public class getEmployeeServlet extends HttpServlet {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 8148224059150429028L;
+	private static final long serialVersionUID = 1L;
 
 	
 	
