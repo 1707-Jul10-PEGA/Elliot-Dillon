@@ -18,13 +18,13 @@ import com.revature.trms.objects.EmployeeLogin;
  * Servlet implementation class GetPendingRequestCount
  */
 @WebServlet("/getPendingRequestCount")
-public class GetPendingRequestCount extends HttpServlet {
+public class GetPendingRequestCountServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GetPendingRequestCount() {
+    public GetPendingRequestCountServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
