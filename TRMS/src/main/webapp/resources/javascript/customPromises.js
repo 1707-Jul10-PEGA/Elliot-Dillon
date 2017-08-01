@@ -27,9 +27,9 @@ function promiseGetCurrentFormCount(){
 		    type:'GET'
 		  })
 		    .done(function(response){
-		      console.log(response);
-		      var currentFormCount = JSON.parse(response);
-		      resolve(currentFormCount);
+//		      console.log(typeof(response));
+//		      var currentFormCount = JSON.parse(response);
+		      resolve(response);
 		    })
 		    .fail(function(response){
 		      console.log("error");

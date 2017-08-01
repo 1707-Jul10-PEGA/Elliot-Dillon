@@ -5,22 +5,22 @@ $(document).ready(function(){
 			configureWelcomeTag(employee);
 		});
 
-});
-
-// promise function for current form count
-$(document).ready(function(){
 	promiseGetCurrentFormCount()
 		.then(function(currentFormCount){
 			configureCurrentFormCount(currentFormCount);
 		});
 
+	// promise function for pending requests count
+
 });
+
+// promise function for pending requests count
 
 function configureWelcomeTag(name){
 	$("#welcome").text("WELCOME BACK " + name.firstName +" "+ name.lastName +"!");
 }
 
 function configureCurrentFormCount(currentFormCount) {
-	$("#current").val(currentFormCount);
+	$("#current").text("You have submitted "+ currentFormCount + " forms!");
 }
 

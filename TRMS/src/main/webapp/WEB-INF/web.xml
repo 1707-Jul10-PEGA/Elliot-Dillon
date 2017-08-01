@@ -9,5 +9,14 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
- 
+  <servlet>
+    <description></description>
+    <display-name>GetPendingRequestCount</display-name>
+    <servlet-name>GetPendingRequestCount</servlet-name>
+    <servlet-class>com.revature.trms.servlet.GetPendingRequestCount</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetPendingRequestCount</servlet-name>
+    <url-pattern>/GetPendingRequestCount</url-pattern>
+  </servlet-mapping>
 </web-app>
