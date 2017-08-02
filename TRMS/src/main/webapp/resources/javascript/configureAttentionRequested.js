@@ -16,7 +16,7 @@ function configureView(list){
 		var col2 = $('<td>'+value.title+'</td>'); //title
 		var col3 = $('<td>' + value.status + "</td>")//status
 		var col4 = $('<td></td>'); //view
-		var form = $('<form action="SelectedForm" method="get"><input type="hidden" name="formID" value='+value.fid+'S></input><button class="btn btn-primary">View</button></form>')
+		var form = $('<form action="SelectedForm" method="get"><input type="hidden" name="formID" value='+value.fid+'></input><button class="btn btn-primary">View</button></form>')
 		col4.append(form);
 		row.append(col1);
 		row.append(col2);
