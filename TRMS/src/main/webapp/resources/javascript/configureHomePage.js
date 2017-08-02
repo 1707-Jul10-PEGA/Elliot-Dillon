@@ -15,7 +15,6 @@ $(document).ready(function(){
 			configureCurrentFormCount(currentFormCount);
 		});
 
-		
 
 });
 
@@ -30,3 +29,5 @@ function configurePendingRequestCount(pendingRequestCount) {
 function configureCurrentFormCount(currentFormCount) {
 	$("#current").text("Submitted "+ currentFormCount + " forms!");
 }
+
+
