@@ -9,6 +9,7 @@
 	<script type="text/javascript" src="resources/javascript/customPromises.js"></script>
 	<script type="text/javascript" src="resources/javascript/custom.js"></script>
 	<script type="text/javascript" src="resources/javascript/configurePersonalInformation.js"></script>
+	<script type="text/javascript" src="resources/javascript/configureCommentBox.js"></script>
 </head>
 <body>
 
@@ -227,6 +228,20 @@
 		</div>	
 		
 		</form>	
+	</div>
+	
+	<!-- Comment box -->
+	<div class="form-group col-7" id="comment_box">
+ 		<label for="comment">Name, Title: </label>
+ 		<textarea class="form-control" rows="5" id="comment"></textarea>
+ 	</div>
+ 	<div class="form-group col-2">
+			<button id="add_comment" type="button" class="btn btn-primary center-block ">Post Comment</button>
+	</div>
+	
+	<!-- Posts -->
+	<div class="posts">
+		<ul class="list-group" id="append_comment"></ul>
 	</div>
 
 </body>
