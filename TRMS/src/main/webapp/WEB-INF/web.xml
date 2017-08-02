@@ -29,4 +29,14 @@
     <servlet-name>GetListOfCurrentForms</servlet-name>
     <url-pattern>/GetListOfCurrentForms</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SupervisorServlet</display-name>
+    <servlet-name>SupervisorServlet</servlet-name>
+    <servlet-class>com.revature.trms.servlet.SupervisorServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SupervisorServlet</servlet-name>
+    <url-pattern>/SupervisorServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
