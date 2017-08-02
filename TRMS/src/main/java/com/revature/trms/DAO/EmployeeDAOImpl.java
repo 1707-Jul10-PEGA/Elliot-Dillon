@@ -89,6 +89,7 @@ public class EmployeeDAOImpl extends DAOFactory implements EmployeeDAO {
 			e.setFirstName(rs.getString("FIRSTNAME"));
 			e.setLastName(rs.getString("LASTNAME"));
 			e.setDepartment(rs.getString("DEPARTMENT"));
+			
 			e.setTitle("TITLE");
 		}
 		closeResource();

@@ -91,3 +91,45 @@ function promiseGetListOfRequestedReviews(){
 		    });
 	});
 }
+
+function promiseGetForm(){
+	return new Promise(function(resolve,reject){
+		$.ajax({
+		    url:'getForm',
+		    type:'GET'
+		  })
+		    .done(function(response){
+		    	console.log(response);
+		    	var form = JSON.parse(response);
+		    	console.log(form);
+		    	resolve(form);
+		    })
+		    .fail(function(response){
+		      console.log("error");
+		      reject(null);
+		    });
+	});
+}	
+
+function promiseGetSupervisorEmployee(pid){
+	console.log(pid);
+	return new Promise(function(resolve,reject){
+		$.ajax({
+		    url:'getSupervisorEmployee',
+		    type:'GET',
+		    data:{"PID":21}
+		  })
+		    .done(function(response){
+		    	console.log(response);
+		    	var form = JSON.parse(response);
+		    	console.log(form);
+		    	resolve(form);
+		    })
+		    .fail(function(response){
+		      console.log("error");
+		      reject(null);
+		    });
+	});
+}	
+
+

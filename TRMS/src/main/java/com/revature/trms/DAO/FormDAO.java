@@ -20,4 +20,6 @@ public interface FormDAO {
 	public boolean assignSuperVisor(int f_id, int s_id) throws SQLException;
 	
 	public int getLastSubmitedFormId(int pid) throws SQLException;
+	
+	public ReimbursementForm getReimbursementForm(int f_id) throws SQLException;
 }

@@ -9,12 +9,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.trms.DAO.DAOFactory;
-import com.revature.trms.DAO.FormDAO;
-import com.revature.trms.objects.ReimbursementForm;
+import com.revature.trms.DAO.EmployeeDAO;
+import com.revature.trms.objects.Employee;
 
-@WebServlet("/SelectedForm")
-public class SelectedFormServlet extends HttpServlet {
+@WebServlet("/getSupervisorEmployee")
+public class GetSupervisorEmployeeServlet extends HttpServlet {
 
 	/**
 	 * 
@@ -23,18 +24,25 @@ public class SelectedFormServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		int pid = Integer.parseInt(req.getParameter("PID"));
+		String employeeLogin = null;
 		try {
-			FormDAO dao = (FormDAO) DAOFactory.getDAO("FormDAO");
-			ReimbursementForm rf = dao.getReimbursementForm(Integer.parseInt(req.getParameter("formID")));
-			req.getSession().setAttribute("ReimbursementForm", rf);
+			EmployeeDAO dao = (EmployeeDAO)DAOFactory.getDAO("EmployeeDAO");
+			Employee e = dao.getEmployee(pid);
+			ObjectMapper om = new ObjectMapper();
+			employeeLogin = om.writeValueAsString(e);
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		req.getRequestDispatcher("reviewForm.html").forward(req, resp);
-	}
+		System.out.println(employeeLogin);
+		//resp.setContentType("Application/JSON");
+		resp.getWriter().write(employeeLogin);
 		
+	}
+	
+	
 	
 }

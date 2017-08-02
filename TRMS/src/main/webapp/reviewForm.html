@@ -8,8 +8,8 @@
 	<script type="text/javascript" src="resources/javascript/jquery-3.2.1.js"></script>
 	<script type="text/javascript" src="resources/javascript/customPromises.js"></script>
 	<script type="text/javascript" src="resources/javascript/custom.js"></script>
-	<script type="text/javascript" src="resources/javascript/configurePersonalInformation.js"></script>
 	<script type="text/javascript" src="resources/javascript/configureCommentBox.js"></script>
+	<script type="text/javascript" src="resources/javascript/configureForm.js"></script>
 </head>
 <body>
 
@@ -20,13 +20,13 @@
 	<div class="container col-7" id="progress_bar">
 		<h1 id="approval_header">Approval Progress</h1>
 		<div class="progress">
-			<div class="progress-bar-striped bg-success progress-bar-animated" id="supervisorBox" role="progressbar" style="width:20%">
+			<div class="progress-bar-striped bg-info" id="supervisorBox" role="progressbar" style="width:20%">
 				Supervisor<br>
-				approved!
+				pending approval
 			</div>
-			<div class="progress-bar-striped bg-success progress-bar-animated" id="headBox"role="progressbar" style="width:20%">
+			<div class="progress-bar-striped bg-info" id="headBox"role="progressbar" style="width:20%">
 				Department Head<br>
-				approved!
+				pending approval
 			</div>
 			<div class="progress-bar-striped bg-info" role="progressbar" id="bencoBox" style="width:20%">
 				BenCo<br>
@@ -204,28 +204,11 @@
 					<option value="Other">Other</option>
 				</select>
 			</div>
-			
-			<!-- Add multiple documents to the form -->
-			
-			<!-- <div class="form-group">
-				<div class="row ml-1">
-						<h4>Additional Documents</h4>
-						 <button id="add_doc" type="button" class="btn btn-default btn-sm ml-1">
-          					<span class="glyphicon glyphicon-plus"></span> Plus
-        				</button>
-        				 <button id="remove_doc" type="button" class="btn btn-default btn-sm ml-1">
-          					<span class="glyphicon glyphicon-minus"></span> Minus
-        				</button>
-					</div>			
-			</div>
-			
-			<ul class="list-group" id="additional_doc">
-				
-			</ul> -->
 
 		<div class="form-group">
-			<button type="submit" class="btn btn-primary center-block ">Submit</button>
-		</div>	
+			<button type="submit" class="btn btn-primary center-block" id="approve_button">Approve</button>
+			<button type="submit" class="btn btn-primary center-block" id="deny_button">Deny</button>
+		</div>
 		
 		</form>	
 	</div>

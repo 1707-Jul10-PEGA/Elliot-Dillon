@@ -199,7 +199,7 @@ public class FormDAOImpl extends DAOFactory implements FormDAO {
 		ReimbursementForm rf = null;
 		String sql = "SELECT * " 
 					+ "FROM REIMBURSEMENT_FORMS RF "
-					+ "INNER JOIN  TYPE_OF_EVENTS TOE ON TOE.TOE_ID = RF.TYPE_OF_EVENT" 
+					+ "INNER JOIN  TYPE_OF_EVENTS TOE ON TOE.TOE_ID = RF.TYPE_OF_EVENT " 
 					+ "WHERE RF.F_ID = ?";
 		setup();
 		pStmt = conn.prepareStatement(sql);
@@ -209,7 +209,7 @@ public class FormDAOImpl extends DAOFactory implements FormDAO {
 		while (rs.next()) {
 			rf = new ReimbursementForm();
 			rf.setFID(rs.getInt("F_ID"));
-			rf.setPID(rs.getInt("P__ID"));
+			rf.setPID(rs.getInt("P_ID"));
 			rf.setStartDate(rs.getString("START_DATE"));
 			rf.setStartTime(rs.getString("START_TIME"));
 			rf.setStreet(rs.getString("STREET_ADDRESS"));
@@ -222,10 +222,13 @@ public class FormDAOImpl extends DAOFactory implements FormDAO {
 			rf.setFinalPresentation(rs.getBlob("FINAL_PRESENTATION"));
 			rf.setStatus(rs.getString("STATUS"));
 			rf.setTitle(rs.getString("TITLE"));
+			rf.setDescription(rs.getString("DESCRIPTION"));
+			rf.setEstimatedTimeOff(rs.getInt("ESTIMATED_TIME_OFF"));
 		}
 		closeResource();
 		return rf;
 	}
+	
 	
 	public boolean assignSuperVisor(int f_id, int s_id) throws SQLException{
 		int insert = 0;
