@@ -1,4 +1,4 @@
-$(doocument).ready(function(){
+$(document).ready(function(){
 	
 	promiseGetListOfRequestedReviews()
 	  .then(function(list){//an array of forms

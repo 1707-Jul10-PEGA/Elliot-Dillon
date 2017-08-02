@@ -17,4 +17,7 @@ public interface FormDAO {
 	
 	public int getEmployeeReviewCount(int s_id) throws SQLException;
 	
+	public boolean assignSuperVisor(int f_id, int s_id) throws SQLException;
+	
+	public int getLastSubmitedFormId(int pid) throws SQLException;
 }

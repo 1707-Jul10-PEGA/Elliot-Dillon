@@ -78,7 +78,7 @@ public class EmployeeDAOImpl extends DAOFactory implements EmployeeDAO {
 					+ "FROM EMPLOYEE EMP "
 					+ "INNER JOIN TITLE T ON T.T_ID = EMP.TITLE_ID "
 					+ "INNER JOIN DEPARTMENT DPT ON DPT.D_ID = EMP.DEPARTMENT_ID "
-					+ "WHERE EMP.P_ID = ?;";
+					+ "WHERE EMP.P_ID = ?";
 		pStmt = conn.prepareStatement(sql);
 		pStmt.setInt(1, PID);
 		ResultSet rs = pStmt.executeQuery();
@@ -91,7 +91,7 @@ public class EmployeeDAOImpl extends DAOFactory implements EmployeeDAO {
 			e.setDepartment(rs.getString("DEPARTMENT"));
 			e.setTitle("TITLE");
 		}
-		
+		closeResource();
 		return e;
 	}
 	
@@ -116,7 +116,7 @@ public class EmployeeDAOImpl extends DAOFactory implements EmployeeDAO {
 			e.setDepartment(rs.getString("DEPARTMENT"));
 			e.setTitle("TITLE");
 		}
-		
+		closeResource();
 		return e;
 		
 	}
@@ -127,9 +127,10 @@ public class EmployeeDAOImpl extends DAOFactory implements EmployeeDAO {
 		setup();
 		String sql = "SELECT EMP.P_ID, EMP.FIRSTNAME, EMP.LASTNAME, EMP.EMAIL, T.TITLE, DPT.DEPARTMENT "
 					+ "FROM EMPLOYEE EMP "
+					+ "INNER JOIN EMPLOYEE_SUPERVISOR ES ON ES.S_ID = EMP.P_ID "
 					+ "INNER JOIN TITLE T ON T.T_ID = EMP.TITLE_ID "
 					+ "INNER JOIN DEPARTMENT DPT ON DPT.D_ID = EMP.DEPARTMENT_ID "
-					+ "WHERE ES.E_ID = ?;";
+					+ "WHERE ES.E_ID = ?";
 		pStmt = conn.prepareStatement(sql);
 		pStmt.setInt(1, e_id);
 		ResultSet rs = pStmt.executeQuery();
@@ -140,9 +141,9 @@ public class EmployeeDAOImpl extends DAOFactory implements EmployeeDAO {
 			e.setFirstName(rs.getString("FIRSTNAME"));
 			e.setLastName(rs.getString("LASTNAME"));
 			e.setDepartment(rs.getString("DEPARTMENT"));
-			e.setTitle("TITLE");
+			e.setTitle(rs.getString("TITLE"));
 		}
-		
+		closeResource();
 		return e;
 	}
 	
@@ -196,7 +197,7 @@ public class EmployeeDAOImpl extends DAOFactory implements EmployeeDAO {
 			e.setTitle("TITLE");
 			list.add(e);
 		}
-		
+		closeResource();
 		return randomEmployee(list);
 	}
 
@@ -219,9 +220,9 @@ public class EmployeeDAOImpl extends DAOFactory implements EmployeeDAO {
 			e.setFirstName(rs.getString("FIRSTNAME"));
 			e.setLastName(rs.getString("LASTNAME"));
 			e.setDepartment(rs.getString("DEPARTMENT"));
-			e.setTitle("TITLE");
+			e.setTitle(rs.getString("TITLE"));
 		}
-		
+		closeResource();
 		return e;
 	}
 
@@ -243,12 +244,12 @@ public class EmployeeDAOImpl extends DAOFactory implements EmployeeDAO {
 			e.setFirstName(rs.getString("FIRSTNAME"));
 			e.setLastName(rs.getString("LASTNAME"));
 			e.setDepartment(rs.getString("DEPARTMENT"));
-			e.setTitle("TITLE");
+			e.setTitle(rs.getString("TITLE"));
 			e.setEmail(rs.getString("EMAIL"));
 			e.setPhoneNumber(rs.getString("PHONE_NUMBER"));
 			list.add(e);
 		}
-		
+		closeResource();
 		return randomEmployee(list);
 	}
 	
@@ -256,6 +257,16 @@ public class EmployeeDAOImpl extends DAOFactory implements EmployeeDAO {
 		Random randomGenerator = new Random();
 		int index = randomGenerator.nextInt(list.size()-1);
 		return list.get(index);
+	}
+	
+	private void closeResource(){
+		try {
+			pStmt.close();
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 }

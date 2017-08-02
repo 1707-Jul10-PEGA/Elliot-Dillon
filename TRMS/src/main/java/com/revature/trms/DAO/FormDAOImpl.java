@@ -7,8 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
 import com.revature.trms.connectionfactory.ConnectionFactory;
 import com.revature.trms.objects.ReimbursementForm;
 
@@ -73,9 +71,11 @@ public class FormDAOImpl extends DAOFactory implements FormDAO {
 		pStmt.setString(15, "Pending");
 		pStmt.setString(16, form.getTitle());
 		pStmt.setString(17, form.getGradingFormat());
-		int submit = pStmt.executeUpdate();
 		
-		return (submit==1)?true:false;
+		int insert = pStmt.executeUpdate();
+		
+		closeResource();
+		return (insert==0)?false:true;
 	}
 
 	@Override
@@ -108,6 +108,7 @@ public class FormDAOImpl extends DAOFactory implements FormDAO {
 			rf.setTitle(rs.getString("TITLE"));
 			list.add(rf);
 		}
+		closeResource();
 		return list;
 	}
 
@@ -133,7 +134,7 @@ public class FormDAOImpl extends DAOFactory implements FormDAO {
 		while(rs.next()){
 			ReimbursementForm rf = new ReimbursementForm();
 			rf.setFID(rs.getInt("F_ID"));
-			rf.setPID(rs.getInt("P__ID"));
+			rf.setPID(rs.getInt("P_ID"));
 			rf.setStartDate(rs.getString("START_DATE"));
 			rf.setStartTime(rs.getString("START_TIME"));
 			rf.setStreet(rs.getString("STREET_ADDRESS"));
@@ -148,6 +149,7 @@ public class FormDAOImpl extends DAOFactory implements FormDAO {
 			rf.setTitle(rs.getString("TITLE"));
 			list.add(rf);
 		}
+		closeResource();
 		return list;
 	}
 	
@@ -163,6 +165,7 @@ public class FormDAOImpl extends DAOFactory implements FormDAO {
 		while(rs.next()){
 			currentSubmissions = rs.getInt("COUNT");
 		}
+		closeResource();
 		return currentSubmissions;
 	}
 	
@@ -188,7 +191,7 @@ public class FormDAOImpl extends DAOFactory implements FormDAO {
 		while(rs.next()){
 			reviewCount = rs.getInt("COUNT");
 		}
-		
+		closeResource();
 		return reviewCount;
 	}
 
@@ -220,6 +223,49 @@ public class FormDAOImpl extends DAOFactory implements FormDAO {
 			rf.setStatus(rs.getString("STATUS"));
 			rf.setTitle(rs.getString("TITLE"));
 		}
+		closeResource();
 		return rf;
 	}
+	
+	public boolean assignSuperVisor(int f_id, int s_id) throws SQLException{
+		int insert = 0;
+		String sql = "INSERT INTO APPROVAL_TABLE (F_ID,SUPERVISOR) VALUES (?,?)";
+		setup();
+		pStmt = conn.prepareStatement(sql);
+		pStmt.setInt(1, f_id);
+		pStmt.setInt(2, s_id);
+		insert = pStmt.executeUpdate();	
+		closeResource();
+		return(insert==0)?false:true;
+	}
+	
+	public int getLastSubmitedFormId(int pid) throws SQLException{
+		int key = 0;
+		
+		String sql = "SELECT RF.F_ID "
+				+ "FROM REIMBURSEMENT_FORMS RF "
+				+ "WHERE P_ID = ? "
+				+ "ORDER BY RF.F_ID DESC";
+		setup();
+		pStmt = conn.prepareStatement(sql);
+		pStmt.setInt(1, pid);
+		ResultSet rs = pStmt.executeQuery();
+		while(rs.next()){
+			key = rs.getInt("F_ID");
+			break;
+		}
+		closeResource();		
+		return key;
+	}
+	
+	private void closeResource(){
+		try {
+			pStmt.close();
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 }
