@@ -17,3 +17,21 @@
 	margin-left: 25px;
 	margin-bottom: 20px;
 }
+
+#title_view{
+	background-color: #007acc;
+	color: #ffffff;
+	padding: 10px;
+	margin-top: 25px;
+	text-align: center;
+	width: 50%;
+	margin: 0 auto;
+}
+
+#approve_button{
+	
+}
+
+#deny_button{
+	margin-right: 50px;
+}
